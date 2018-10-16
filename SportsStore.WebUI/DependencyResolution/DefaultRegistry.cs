@@ -14,11 +14,11 @@
 // limitations under the License.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
+using StructureMap;
+using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Concrete;
 namespace SportsStore.WebUI.DependencyResolution {
-    using StructureMap;
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
+
 	
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -30,6 +30,7 @@ namespace SportsStore.WebUI.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
+            For<IProductRepository>().Use<EFProductRepository>();
             //For<IExample>().Use<Example>();
         }
 
